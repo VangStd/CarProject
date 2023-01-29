@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- _________________user___________________ -->
+	<definition name="user"
+		template="/WEB-INF/jsp/layouts/user/mainLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="menu" value="" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="" />
+	</definition>
+
+	<definition name="index" extends="user">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/user/index.jsp" />
+	</definition>
+	<definition name="about" extends="user">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/user/about.jsp" />
+	</definition>
+	<definition name="service" extends="user">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/user/service.jsp" />
+	</definition>
+	<definition name="contact" extends="user">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/user/contact.jsp" />
+	</definition>
+	<definition name="booking" extends="user">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/user/booking.jsp" />
+	</definition>
+	<definition name="technicians" extends="user">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/user/technicians.jsp" />
+	</definition>
+	<definition name="testimonial" extends="user">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/user/testimonial.jsp" />
+	</definition>
+	<definition name="403" extends="user">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/user/403.jsp" />
+	</definition>
+	<definition name="login" extends="user">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/user/login.jsp" />
+	</definition>
+	<definition name="signup" extends="user">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/user/signup.jsp" />
+	</definition>
+	<definition name="viheclerental" extends="user">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/user/viheclerental.jsp" />
+	</definition>
+	<!-- _________________admin___________________ -->
+	<definition name="admin"
+		template="/WEB-INF/jsp/layouts/admin/mainLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="menu" value="" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="" />
+	</definition>
+	<definition name="ad_index" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/index.jsp" />
+	</definition>
+	<definition name="ad_index_account" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/account/index.jsp" />
+	</definition>
+	<definition name="ad_add_account" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/account/addaccount.jsp" />
+	</definition>
+	<definition name="ad_edit_account" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/account/editaccount.jsp" />
+	</definition>
+	<definition name="ad_index_typecar" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/typecar/index.jsp" />
+	</definition>
+	<definition name="ad_add_typecar" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/typecar/addtypecar.jsp" />
+	</definition>
+	<definition name="ad_edit_typecar" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/typecar/edittypecar.jsp" />
+	</definition>
+	<definition name="ad_index_brandcar" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/brandcar/index.jsp" />
+	</definition>
+</tiles-definitions>

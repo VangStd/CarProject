@@ -16,6 +16,8 @@ public class AdminBrandCarController {
 	@GetMapping("/admin/home-brandcar")
 	public String homeBrandCar(Model model) {
 		//s
+		//vang changed
+		int i = 2;
 		return brandCarService.homeBrandCar(model);
 	}
 }

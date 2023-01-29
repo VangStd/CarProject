@@ -11,7 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlTransient;
+
+import org.hibernate.validator.constraints.Length;
 
 
 @Entity
@@ -26,16 +30,21 @@ public class BrandCar implements Serializable {
     private Integer brandID;
     @Basic(optional = false)
     @Column(name = "CompanyName")
+    @Length(min = 2,max = 25,message = "Companyname must have from 2 to 25 character")
     private String companyName;
     @Basic(optional = false)
     @Column(name = "BrandName")
+    @Length(min = 2,max = 15,message = "BrandName must have from 2 to 15 character")
     private String brandName;
     @Basic(optional = false)
     @Column(name = "Country")
+    @NotBlank(message = "Please enter Country")
     private String country;
     @Column(name = "HomePage")
+    @Length(min = 8,max = 30,message = "HomePage must have from 8 to 30 character")
     private String homePage;
     @Column(name = "Phone")
+    @Pattern(regexp = "0[0-9]{9,11}",message = "Phone must begin 0 and must have 10 - 12 number")
     private String phone;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "brandID")
     private Collection<Car> carCollection;

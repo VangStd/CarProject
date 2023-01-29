@@ -99,4 +99,8 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/brandcar/index.jsp" />
 	</definition>
+	<definition name="ad_add_brandcar" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/brandcar/addbrandcar.jsp" />
+	</definition>
 </tiles-definitions>

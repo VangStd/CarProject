@@ -11,8 +11,8 @@
 				</center>
 			</div>
 			<div class="col-lg-12">
-				<a href="${pageContext.request.contextPath }/admin/add-typecar"
-					class="btn btn-success">Add New TypeCar</a>
+				<a href="${pageContext.request.contextPath }/admin/add-brandcar"
+					class="btn btn-success">Add New Brand Car</a>
 			</div>
 			<div class="col-lg-12 account" style="padding-top: 20px">
 				<div class="table-responsive">

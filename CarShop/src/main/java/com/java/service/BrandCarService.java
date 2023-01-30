@@ -18,4 +18,6 @@ public interface BrandCarService {
 	String editBrandCar(Model model, int id);
 
 	String editBrandCar(BrandCar brandCar, BindingResult br, Model model,HttpServletRequest request);
+	
+	String deleteBrandCar(Model model,HttpServletRequest request);
 }

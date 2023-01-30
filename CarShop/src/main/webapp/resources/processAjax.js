@@ -8,6 +8,7 @@ var data = {
 		data.changeStatusAccount();
 		data.deleteAccount();
 		data.deleteTypeCar();
+		data.deleteBrandCar();
 	},
 	register: function() {
 
@@ -103,6 +104,46 @@ var data = {
 									'success'
 								);
 								location.href = "/CarShop/admin/home-typecar";
+							},
+							error: function() {
+								Swal.fire({
+									icon: 'error',
+									title: 'Oops...',
+									text: 'You cannot delete it !',
+									footer: '-'
+								})
+							}
+						});
+					}
+				});
+			});
+		});
+	}, deleteBrandCar: function() {
+		$('.brandcar__button__deleteBrandcar').each(function() {
+			$(this).on('click', function() {
+				var id = $(this).data('id');
+				console.log(id);
+				Swal.fire({
+					title: 'Are you sure?',
+					text: "You won't be able to revert this!",
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Yes, Detele it!'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						$.ajax({
+							type: 'POST',
+							url: '/CarShop/admin/delete-brandcar',
+							data: { brandID: id },
+							success: function() {
+								Swal.fire(
+									'Changed!',
+									'Your file has been changed.',
+									'success'
+								);
+								location.href = "/CarShop/admin/home-brandcar";
 							},
 							error: function() {
 								Swal.fire({

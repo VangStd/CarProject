@@ -115,4 +115,12 @@ public class BrandCarServiceimpl implements BrandCarService {
 		brandCarRepository.save(brandCar);
 		return "redirect:/admin/home-brandcar";
 	}
+
+	@Override
+	public String deleteBrandCar(Model model, HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		int id = Integer.parseInt(request.getParameter("brandID"));
+		brandCarRepository.deleteById(id);
+		return "redirect:/admin/home-brandcar";
+	}
 }

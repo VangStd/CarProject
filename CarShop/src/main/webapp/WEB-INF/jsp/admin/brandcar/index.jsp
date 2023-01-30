@@ -38,6 +38,9 @@
 									<td class="prova">${item.phone }</td>
 									<td><a
 										href="${pageContext.request.contextPath }/admin/edit-brandcar/${item.brandID}">Edit</a></td>
+									<td>
+										<button type="button" class="brandcar__button__deleteBrandcar" data-id="${item.brandID }">Delete</button>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>

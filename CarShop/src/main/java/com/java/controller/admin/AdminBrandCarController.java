@@ -47,4 +47,9 @@ public class AdminBrandCarController {
 			HttpServletRequest request, @PathVariable("id") int id) {
 		return brandCarService.editBrandCar(brandCar, br, model, request);
 	}
+
+	@PostMapping("/admin/delete-brandcar")
+	public String deleteBrandCar(Model model, HttpServletRequest request) {
+		return brandCarService.deleteBrandCar(model, request);
+	}
 }

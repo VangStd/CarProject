@@ -1,4 +1,4 @@
-package com.java.repositories;
+package com.java.repositoriesobjectquery;
 
 public interface TypeCarRepositoriesCustom {
 	long getCountByTypeName(String typeName);

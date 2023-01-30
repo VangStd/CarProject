@@ -17,7 +17,7 @@ public interface TypeCarService {
 	
 	String editTypeCar(Model model,int id);
 	
-	String editTypeCar( TypeCar typeCar, BindingResult br, Model model);
+	String editTypeCar( TypeCar typeCar, BindingResult br, Model model,HttpServletRequest request);
 	
 	String deleteTypeCar(Model model, HttpServletRequest request);
 

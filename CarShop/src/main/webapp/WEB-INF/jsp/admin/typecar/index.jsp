@@ -31,7 +31,7 @@
 									<td class="prova">${item.typeName }</td>
 									<td class="prova">${item.typeDescription }</td>
 									<td><a
-										href="${pageContext.request.contextPath }/admin/edit-typecar?id=${item.typeID}"
+										href="${pageContext.request.contextPath }/admin/edit-typecar/${item.typeID}"
 										class="btn btn-primary">Edit</a></td>
 									<td>
 										<button type="button" class="typecar__button__deleteTypeCar btn btn-danger"

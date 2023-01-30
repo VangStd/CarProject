@@ -36,7 +36,8 @@
 									<td class="prova">${item.country }</td>
 									<td class="prova">${item.homePage }</td>
 									<td class="prova">${item.phone }</td>
-									
+									<td><a
+										href="${pageContext.request.contextPath }/admin/edit-brandcar/${item.brandID}">Edit</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

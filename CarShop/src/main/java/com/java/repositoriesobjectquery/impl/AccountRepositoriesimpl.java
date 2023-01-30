@@ -1,4 +1,4 @@
-package com.java.repositories.impl;
+package com.java.repositoriesobjectquery.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
 
 import com.java.entities.Accounts;
-import com.java.repositories.AccountRepositoriesCustom;
+import com.java.repositoriesobjectquery.AccountRepositoriesCustom;
 
 @Repository
 public class AccountRepositoriesimpl implements AccountRepositoriesCustom {

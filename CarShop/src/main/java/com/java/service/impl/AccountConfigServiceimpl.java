@@ -8,10 +8,10 @@ import org.springframework.validation.BindingResult;
 
 import com.java.entities.AccountConfig;
 import com.java.entities.Accounts;
-import com.java.repositories.AccountConfigRepositoriesCustom;
 import com.java.repositories.AccountConfigRepository;
-import com.java.repositories.AccountRepositoriesCustom;
 import com.java.repositories.AccountRepository;
+import com.java.repositoriesobjectquery.AccountConfigRepositoriesCustom;
+import com.java.repositoriesobjectquery.AccountRepositoriesCustom;
 import com.java.service.AccountConfigService;
 
 @Service

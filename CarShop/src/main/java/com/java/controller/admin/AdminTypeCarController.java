@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,14 +37,15 @@ public class AdminTypeCarController {
 		return carService.addTypeCar(typeCar, br, model);
 	}
 
-	@GetMapping("/admin/edit-typecar")
-	public String editTypeCar(Model model, @RequestParam("id") int id) {
+	@GetMapping("/admin/edit-typecar/{id}")
+	public String editTypeCar(Model model, @PathVariable("id") int id) {
 		return carService.editTypeCar(model, id);
 	}
 
-	@PostMapping("/admin/edit-typecar")
-	public String editTypeCar(@ModelAttribute("typecar") @Valid TypeCar typeCar, BindingResult br, Model model) {
-		return carService.editTypeCar(typeCar, br, model);
+	@PostMapping("/admin/edit-typecar/{id}")
+	public String editTypeCar(@ModelAttribute("typecar") @Valid TypeCar typeCar, BindingResult br, Model model,
+			HttpServletRequest request, @PathVariable("id") int id) {
+		return carService.editTypeCar(typeCar, br, model, request);
 	}
 
 	@PostMapping("/admin/delete-typecar")

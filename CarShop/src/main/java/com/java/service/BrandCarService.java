@@ -1,5 +1,7 @@
 package com.java.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
@@ -12,4 +14,8 @@ public interface BrandCarService {
 	String addBrandCar(Model model);
 
 	String addBrandCar(BrandCar brandCar, BindingResult br, Model model);
+
+	String editBrandCar(Model model, int id);
+
+	String editBrandCar(BrandCar brandCar, BindingResult br, Model model,HttpServletRequest request);
 }

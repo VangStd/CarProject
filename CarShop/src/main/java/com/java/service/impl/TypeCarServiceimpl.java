@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import com.java.entities.TypeCar;
-import com.java.repositories.TypeCarRepositoriesCustom;
 import com.java.repositories.TypeCarRepository;
+import com.java.repositoriesobjectquery.TypeCarRepositoriesCustom;
 import com.java.service.TypeCarService;
 
 @Service
@@ -33,7 +33,7 @@ public class TypeCarServiceimpl implements TypeCarService {
 		// TODO Auto-generated method stub
 		TypeCar typeCar = new TypeCar();
 		model.addAttribute("typecar", typeCar);
-		//a
+		// a
 		return "ad_add_typecar";
 	}
 
@@ -64,10 +64,11 @@ public class TypeCarServiceimpl implements TypeCarService {
 	}
 
 	@Override
-	public String editTypeCar(TypeCar typeCar, BindingResult br, Model model) {
+	public String editTypeCar(TypeCar typeCar, BindingResult br, Model model, HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		TypeCar car = typeCarRepository.findById(typeCar.getTypeID()).get();
-		boolean checkWithOldTypeName = car.getTypeName().equalsIgnoreCase(typeCar.getTypeName());
+		String oldTypeName = request.getParameter("typename_temp");
+		boolean checkWithOldTypeName = oldTypeName.equalsIgnoreCase(typeCar.getTypeName());
+		int status = 0;
 		if (br.hasErrors()) {
 			model.addAttribute("typecar", typeCar);
 			return "ad_edit_typecar";
@@ -76,13 +77,14 @@ public class TypeCarServiceimpl implements TypeCarService {
 			long count = typeCarRepositoriesCustom.getCountByTypeName(typeCar.getTypeName());
 			if (count > 0) {
 				br.rejectValue("typeName", "500", "TypeName Exist !");
-				return "ad_edit_typecar";
-			} else {
-				typeCarRepository.save(typeCar);
+				status++;
 			}
-		} else {
-			typeCarRepository.save(typeCar);
 		}
+		if (status > 0) {
+			model.addAttribute("typecar", typeCar);
+			return "ad_edit_typecar";
+		}
+		typeCarRepository.save(typeCar);
 		return "redirect:/admin/home-typecar";
 	}
 
@@ -92,7 +94,7 @@ public class TypeCarServiceimpl implements TypeCarService {
 		try {
 			int id = Integer.parseInt(request.getParameter("typecarID"));
 			typeCarRepository.deleteById(id);
-			System.out.println("---------------------"+id);
+			System.out.println("---------------------" + id);
 			return "redirect:/admin/home-typecar";
 		} catch (Exception e) {
 			System.out.println(e.toString());

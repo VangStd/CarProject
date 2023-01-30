@@ -17,6 +17,8 @@
 					<div class="mb-3 mt-3">
 						<label for="email" class="form-label">TypeName:</label>
 						<form:input path="typeName" cssClass="form-control" />
+						<input type="hidden" value="${typecar.typeName}"
+							name="typename_temp">
 						<form:errors path="typeName" id="errAdmin"></form:errors>
 					</div>
 					<div class="mb-3">

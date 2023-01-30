@@ -33,6 +33,7 @@ public class TypeCarServiceimpl implements TypeCarService {
 		// TODO Auto-generated method stub
 		TypeCar typeCar = new TypeCar();
 		model.addAttribute("typecar", typeCar);
+		//a
 		return "ad_add_typecar";
 	}
 

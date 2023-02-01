@@ -35,7 +35,7 @@ public class Car implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "Price")
-    private BigDecimal price;
+    private Double price;
     @Basic(optional = false)
     @Column(name = "Quantity")
     private int quantity;
@@ -67,7 +67,7 @@ public class Car implements Serializable {
         this.carID = carID;
     }
 
-    public Car(Long carID, String productName, int seat, BigDecimal price, int quantity, String image, int sale) {
+    public Car(Long carID, String productName, int seat, Double price, int quantity, String image, int sale) {
         this.carID = carID;
         this.productName = productName;
         this.seat = seat;
@@ -101,11 +101,11 @@ public class Car implements Serializable {
         this.seat = seat;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -203,9 +203,14 @@ public class Car implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "com.java.entities.Car[ carID=" + carID + " ]";
-    }
+	@Override
+	public String toString() {
+		return "Car [carID=" + carID + ", productName=" + productName + ", seat=" + seat + ", price=" + price
+				+ ", quantity=" + quantity + ", image=" + image + ", sale=" + sale + ", quantityOnInVoice="
+				+ quantityOnInVoice + ", status=" + status + ", imageCarCollection=" + imageCarCollection + ", brandID="
+				+ brandID + ", typeID=" + typeID + ", carDetailCollection=" + carDetailCollection + "]";
+	}
+
+
     
 }

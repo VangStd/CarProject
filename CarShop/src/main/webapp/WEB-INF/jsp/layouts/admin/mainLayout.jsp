@@ -335,9 +335,13 @@
 									<li class="submenu-item"><a class="submenu-link"
 										href="${pageContext.request.contextPath }/admin/account-home">Accounts</a></li>
 									<li class="submenu-item"><a class="submenu-link"
-										href="${pageContext.request.contextPath }/admin/home-typecar">Type Car</a></li>
+										href="${pageContext.request.contextPath }/admin/home-typecar">Type
+											Car</a></li>
 									<li class="submenu-item"><a class="submenu-link"
-										href="${pageContext.request.contextPath }/admin/home-brandcar">Brand Car</a></li>
+										href="${pageContext.request.contextPath }/admin/home-brandcar">Brand
+											Car</a></li>
+									<li class="submenu-item"><a class="submenu-link"
+										href="${pageContext.request.contextPath }/admin/home-car">Car</a></li>
 								</ul>
 							</div>
 						</li>

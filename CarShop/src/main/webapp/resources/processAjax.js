@@ -9,6 +9,7 @@ var data = {
 		data.deleteAccount();
 		data.deleteTypeCar();
 		data.deleteBrandCar();
+		data.viewMoreCar();
 	},
 	register: function() {
 
@@ -156,6 +157,28 @@ var data = {
 						});
 					}
 				});
+			});
+		});
+	}, viewMoreCar: function() {
+		$('.car__button__viewmorecar').each(function() {
+			$(this).on('click', function() {
+				var id = $(this).data('id');
+				console.log(id);
+				$.ajax({
+					type: 'GET',
+					url: '/CarShop/admin/viewmore-car',
+					data: { carID: id },
+					dataType: 'json',
+					success: function(data) {
+						$('#myModal').modal('show');
+						$('#textViewMoreID').text('CAR ID : ' + data.carid);
+						$('#textViewMoreColor').text('CAR Color : ' + data.color);
+						$('#textViewMoreDateBuy').text('CAR DateBuy : ' + data.dateBuy);
+						$('#textViewMoreFuel').text('CAR Fuel : ' + data.fuel);
+						$('#textViewMoreTranmission').text('CAR Tranmission : ' + data.tranmission);
+						$('#textViewMoreFeature').text('CAR Feature : ' + data.feature);
+					}
+				})
 			});
 		});
 	}

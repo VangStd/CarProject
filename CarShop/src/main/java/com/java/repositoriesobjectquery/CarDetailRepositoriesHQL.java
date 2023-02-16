@@ -4,4 +4,5 @@ import com.java.entities.CarDetail;
 
 public interface CarDetailRepositoriesHQL {
 	CarDetail findByCarID(long cadid);
+
 }

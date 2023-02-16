@@ -13,6 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.validation.Valid;
+
+import org.hibernate.validator.constraints.Length;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "CarDetail")
@@ -26,11 +31,11 @@ public class CarDetail implements Serializable {
 	private Integer id;
 	@Basic(optional = false)
 	@Column(name = "Color")
+	@Length(min = 2, max = 6, message = "Color must have 2 to 6 character")
 	private String color;
 	@Basic(optional = false)
 	@Column(name = "DateBuy")
-	@Temporal(TemporalType.DATE)
-	private Date dateBuy;
+	private String dateBuy;
 	@Basic(optional = false)
 	@Column(name = "Fuel")
 	private String fuel;
@@ -39,9 +44,16 @@ public class CarDetail implements Serializable {
 	private String tranmission;
 	@Column(name = "Feature")
 	private String feature;
+	@Basic(optional = false)
+	@Column(name = "Image")
+	private String image;
+	@Valid
 	@JoinColumn(name = "CarID", referencedColumnName = "CarID")
 	@ManyToOne(optional = false)
 	private Car carID;
+	// image car
+	@Transient
+	private MultipartFile imgCar;
 
 	public CarDetail() {
 	}
@@ -50,7 +62,7 @@ public class CarDetail implements Serializable {
 		this.id = id;
 	}
 
-	public CarDetail(Integer id, String color, Date dateBuy, String fuel, String tranmission) {
+	public CarDetail(Integer id, String color, String dateBuy, String fuel, String tranmission) {
 		this.id = id;
 		this.color = color;
 		this.dateBuy = dateBuy;
@@ -74,11 +86,11 @@ public class CarDetail implements Serializable {
 		this.color = color;
 	}
 
-	public Date getDateBuy() {
+	public String getDateBuy() {
 		return dateBuy;
 	}
 
-	public void setDateBuy(Date dateBuy) {
+	public void setDateBuy(String dateBuy) {
 		this.dateBuy = dateBuy;
 	}
 
@@ -112,6 +124,22 @@ public class CarDetail implements Serializable {
 
 	public void setCarID(Car carID) {
 		this.carID = carID;
+	}
+
+	public MultipartFile getImgCar() {
+		return imgCar;
+	}
+
+	public void setImgCar(MultipartFile imgCar) {
+		this.imgCar = imgCar;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	@Override

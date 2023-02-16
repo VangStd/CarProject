@@ -10,31 +10,30 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
-import com.java.entities.CarDetail;
-import com.java.repositoriesobjectquery.CarDetailRepositoriesHQL;
+import com.java.entities.ImageCar;
+import com.java.repositoriesobjectquery.ImageCarRepositoriesHQL;
 
 @Repository
-public class CarDetailRepositoriesHQLimpl implements CarDetailRepositoriesHQL {
+public class ImageCarRepositoriesHQLimpl implements ImageCarRepositoriesHQL {
+
 	EntityManagerFactory etmf;
 	EntityManager em;
 
-	public CarDetailRepositoriesHQLimpl() {
+	public ImageCarRepositoriesHQLimpl() {
 		// TODO Auto-generated constructor stub
 		etmf = Persistence.createEntityManagerFactory("CarShop");
 		em = etmf.createEntityManager();
 	}
 
 	@Override
-	public CarDetail findByCarID(long cadid) {
+	public ImageCar findByCarId(long carID) {
 		// TODO Auto-generated method stub
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Object> cq = cb.createQuery();
-		Root<CarDetail> root = cq.from(CarDetail.class);
+		Root<ImageCar> root = cq.from(ImageCar.class);
 		cq.select(root);
-		cq.where(cb.equal(root.get("carID").get("carID"), cadid));
+		cq.where(cb.equal(root.get("carID").get("carID"), carID));
 		Query query = em.createQuery(cq);
-		return (CarDetail) query.getSingleResult();
+		return (ImageCar) query.getSingleResult();
 	}
-
-
 }

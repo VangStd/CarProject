@@ -256,7 +256,7 @@ Important! Do not edit this plugin if you're not sure you're doing it right. The
                 var numrowsDiv =
                     '<div id="for_numrows" class="for_numrows" style="display: inline;"><label for="numrows">' +
                     translate(voc_show_rows) +
-                    ': </label><select id="numrows"></select></div>';
+                    ' &nbsp : </label><select id="numrows"></select></div>';
                 // append div to choose num rows to show
                 Table.before(numrowsDiv);
                 // get show rows options and append select to its div

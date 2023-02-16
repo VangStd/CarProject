@@ -49,10 +49,6 @@ public class HomeUserController {
 		return "testimonial";
 	}
 	
-	@GetMapping("/vihecle-rental")
-	public String vihecleretal() {
-		return "viheclerental";
-	}
 
 
 }

@@ -34,7 +34,7 @@
 									<td class="prova">${item.companyName }</td>
 									<td class="prova">${item.brandName }</td>
 									<td class="prova">${item.country }</td>
-									<td class="prova">${item.homePage }</td>
+									<td class="prova"><a href="${item.homePage }" target="blank"> ${item.homePage }</a></td>
 									<td class="prova">${item.phone }</td>
 									<td><a
 										href="${pageContext.request.contextPath }/admin/edit-brandcar/${item.brandID}">Edit</a></td>

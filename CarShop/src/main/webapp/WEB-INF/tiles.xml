@@ -111,4 +111,16 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/car/index.jsp" />
 	</definition>
+	<definition name="ad_add_car" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/car/addcar.jsp" />
+	</definition>
+	<definition name="ad_edit_car" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/car/editcar.jsp" />
+	</definition>
+	<definition name="ad_edit_imagecar" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/imagecar/editimagecar.jsp" />
+	</definition>
 </tiles-definitions>

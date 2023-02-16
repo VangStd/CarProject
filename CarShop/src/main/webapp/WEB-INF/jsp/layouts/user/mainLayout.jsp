@@ -48,6 +48,7 @@
 
 <!-- Template Stylesheet -->
 <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet" />
+<link href="<c:url value="/resources/newstyleuser.css"/>" rel="stylesheet" />
 </head>
 
 <body>

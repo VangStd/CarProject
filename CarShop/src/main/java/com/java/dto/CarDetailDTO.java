@@ -5,13 +5,13 @@ import java.util.Date;
 public class CarDetailDTO {
 	Integer id;
 	String color;
-	Date dateBuy;
+	String dateBuy;
 	String fuel;
 	String tranmission;
 	String feature;
 	long carid;
 
-	public CarDetailDTO(Integer id, String color, Date dateBuy, String fuel, String tranmission, String feature,
+	public CarDetailDTO(Integer id, String color, String dateBuy, String fuel, String tranmission, String feature,
 			long carid) {
 		super();
 		this.id = id;

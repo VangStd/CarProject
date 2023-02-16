@@ -10,6 +10,7 @@ var data = {
 		data.deleteTypeCar();
 		data.deleteBrandCar();
 		data.viewMoreCar();
+		data.deleteCar();
 	},
 	register: function() {
 
@@ -104,7 +105,8 @@ var data = {
 									'Your file has been changed.',
 									'success'
 								);
-								location.href = "/CarShop/admin/home-typecar";
+								console.log('Co');
+								$(this).closest("tr").remove();
 							},
 							error: function() {
 								Swal.fire({
@@ -179,6 +181,46 @@ var data = {
 						$('#textViewMoreFeature').text('CAR Feature : ' + data.feature);
 					}
 				})
+			});
+		});
+	}, deleteCar: function() {
+		$('.car__button__deleteCar').each(function() {
+			$(this).on('click', function() {
+				var id = $(this).data('id');
+				console.log(id);
+				Swal.fire({
+					title: 'Are you sure?',
+					text: "You won't be able to revert this!",
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Yes, Detele it!'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						$.ajax({
+							type: 'POST',
+							url: '/CarShop/admin/delete-car',
+							data: { carID: id },
+							success: function() {
+								Swal.fire(
+									'Changed!',
+									'Your file has been changed.',
+									'success'
+								);
+								location.href = "/CarShop/admin/home-car";
+							},
+							error: function() {
+								Swal.fire({
+									icon: 'error',
+									title: 'Oops...',
+									text: 'You cannot delete it !',
+									footer: '-'
+								})
+							}
+						});
+					}
+				});
 			});
 		});
 	}

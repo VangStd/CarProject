@@ -3,6 +3,9 @@ package com.java.entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,6 +22,8 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.xml.bind.annotation.XmlTransient;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
@@ -59,8 +64,10 @@ public class Car implements Serializable {
 	@Column(name = "LicensePlates")
 	@Length(min = 7, max = 8, message = "License Plates must have 7 to 8 character")
 	private String licensePlates;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "carID")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "carID",fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private Collection<ImageCar> imageCarCollection;
+	
 	@JoinColumn(name = "BrandID", referencedColumnName = "BrandID")
 	@ManyToOne(optional = false)
 	private BrandCar brandID;

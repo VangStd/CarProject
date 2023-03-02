@@ -33,7 +33,7 @@ public class TypeCar implements Serializable {
 	@Column(name = "TypeDescription")
 	@Length(min = 2, max = 129, message = "TypeName must have from 2 to 129 character")
 	private String typeDescription;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "typeID")
+	@OneToMany(cascade = {CascadeType.ALL,CascadeType.REMOVE}, mappedBy = "typeID")
 	private Collection<Car> carCollection;
 
 	public TypeCar() {

@@ -1,5 +1,6 @@
 package com.java.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,19 +20,22 @@ public interface AccountService {
 
 	Accounts loadByUsername(String username);
 
-	//admin
-	
+	// admin
+
 	String addUserAccount(AccountConfig accountConfig, BindingResult br, Model model);
 
 	String changeStatus(Model model, HttpServletRequest request);
-	
+
 	String homeAccount(Model model);
-	
-	String editAccount(Model model,long id);
-	
-	String editAccount( Accounts accounts,BindingResult br,Model model);
-	
+
+	String editAccount(Model model, long id);
+
+	String editAccount(Accounts accounts, BindingResult br, Model model);
+
 	String deleteAccount(HttpServletRequest request);
-	
+
+	// tech
+
+	String homeRequestTech(Model model,Principal principal);
 
 }

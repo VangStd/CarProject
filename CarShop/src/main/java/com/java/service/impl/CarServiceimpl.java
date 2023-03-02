@@ -20,13 +20,16 @@ import com.java.dto.CarDetailDTO;
 import com.java.entities.BrandCar;
 import com.java.entities.Car;
 import com.java.entities.CarDetail;
+import com.java.entities.ImageCar;
 import com.java.entities.TypeCar;
 import com.java.repositories.BrandCarRepository;
 import com.java.repositories.CarDetailRepository;
 import com.java.repositories.CarRepository;
+import com.java.repositories.ImageCarRepository;
 import com.java.repositories.TypeCarRepository;
 import com.java.repositoriesobjectquery.CarDetailRepositoriesHQL;
 import com.java.repositoriesobjectquery.CarRepositoriesHQL;
+import com.java.repositoriesobjectquery.ImageCarRepositoriesHQL;
 import com.java.service.CarService;
 
 @Service
@@ -52,6 +55,12 @@ public class CarServiceimpl implements CarService {
 
 	@Autowired
 	private BrandCarRepository brandCarRepository;
+
+	@Autowired
+	private ImageCarRepository imageCarRepository;
+
+	@Autowired
+	private ImageCarRepositoriesHQL imageCarRepositoriesHQL;
 
 	@Autowired
 	private Cloudinary cloudinary;
@@ -124,6 +133,8 @@ public class CarServiceimpl implements CarService {
 				String dateOfFormat = formatter.format(date).toString();
 				cardetail.setDateBuy(dateOfFormat);
 				carDetailRepository.save(cardetail);
+				ImageCar imageCar = addImageCar(cardetail);
+				imageCarRepository.save(imageCar);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -193,17 +204,28 @@ public class CarServiceimpl implements CarService {
 		CarDetail carDetail = carDetailRepository.findById(id).get();
 		long idCar = carDetail.getCarID().getCarID();
 		String imageID = "PRO" + idCar;
-		System.out.println(idCar+" "+id);
-		
+		System.out.println(idCar + " " + id);
+		ImageCar imageCar = imageCarRepositoriesHQL.findByCarId(idCar);
+		String imageName = idCar + "";
 		try {
 			cloudinary.uploader().destroy(imageID, ObjectUtils.asMap("resouce_type", "auto", "public_id", imageID));
-			carDetailRepository.delete(carDetail);
+			cloudinary.uploader().destroy(imageName + "1",
+					ObjectUtils.asMap("resouce_type", "auto", "public_id", imageName + "1"));
+			cloudinary.uploader().destroy(imageName + "2",
+					ObjectUtils.asMap("resouce_type", "auto", "public_id", imageName + "2"));
+			cloudinary.uploader().destroy(imageName + "3",
+					ObjectUtils.asMap("resouce_type", "auto", "public_id", imageName + "3"));
+			cloudinary.uploader().destroy(imageName + "4",
+					ObjectUtils.asMap("resouce_type", "auto", "public_id", imageName + "4"));
+			cloudinary.uploader().destroy(imageName + "5",
+					ObjectUtils.asMap("resouce_type", "auto", "public_id", imageName + "5"));
+//			imageCarRepository.delete(imageCar);
+//			carDetailRepository.delete(carDetail);
 			carRepository.deleteById(idCar);
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
 		}
-
 		return "redirect:/admin/home-car";
 	}
 
@@ -241,6 +263,18 @@ public class CarServiceimpl implements CarService {
 		model.addAttribute("addFuel", carDetail.getFuel());
 		model.addAttribute("addTypeCar", typeCar.getTypeName());
 		model.addAttribute("addBrandCar", brandCar.getBrandName());
+	}
+
+	private ImageCar addImageCar(CarDetail car) {
+		ImageCar imageCar = new ImageCar();
+		imageCar.setCarID(car.getCarID());
+		imageCar.setImageDefault(car.getImage());
+		imageCar.setImage1(car.getImage());
+		imageCar.setImage2(car.getImage());
+		imageCar.setImage3(car.getImage());
+		imageCar.setImage4(car.getImage());
+		imageCar.setImage5(car.getImage());
+		return imageCar;
 	}
 
 }

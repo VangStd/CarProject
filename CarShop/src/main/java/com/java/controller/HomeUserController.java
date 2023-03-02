@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.java.repositoriesobjectquery.TechnicianDetailRepositoriesHQL;
 import com.java.service.AccountService;
 
 @Controller
@@ -13,8 +14,12 @@ public class HomeUserController {
 	@Autowired
 	private AccountService accountService;
 
+	@Autowired
+	private TechnicianDetailRepositoriesHQL technicianDetailRepositoriesHQL;
+
 	@GetMapping(value = { "/", "/home" })
 	public String home() {
+		System.out.println("------------------"+technicianDetailRepositoriesHQL.findByRequestProcessingDESC().getTechnicianID()+" "+technicianDetailRepositoriesHQL.findByRequestProcessingDESC().getRequest()+" "+technicianDetailRepositoriesHQL.findByRequestProcessingDESC().getRequestProcessing());
 		return "index";
 	}
 
@@ -22,11 +27,6 @@ public class HomeUserController {
 	public String about() {
 		System.out.println(accountService.findAll().size());
 		return "about";
-	}
-
-	@GetMapping("/service")
-	public String service() {
-		return "service";
 	}
 
 	@GetMapping("/contact")
@@ -48,7 +48,5 @@ public class HomeUserController {
 	public String testimonial() {
 		return "testimonial";
 	}
-	
-
 
 }

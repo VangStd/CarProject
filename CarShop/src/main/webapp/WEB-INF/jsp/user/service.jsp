@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>>
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 p-0"
 	style="background-image: url(img/carousel-bg-2.jpg);">
@@ -64,7 +65,7 @@
 								<div class="position-relative h-100">
 									<img class="position-absolute img-fluid w-100 h-100"
 										src="<c:url value="/resources/img/service-1.jpg"/>"
-										 style="object-fit: cover;" alt="">
+										style="object-fit: cover;" alt="">
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -93,7 +94,7 @@
 								<div class="position-relative h-100">
 									<img class="position-absolute img-fluid w-100 h-100"
 										src="<c:url value="/resources/img/service-2.jpg"/>"
-										 style="object-fit: cover;" alt="">
+										style="object-fit: cover;" alt="">
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -122,7 +123,7 @@
 								<div class="position-relative h-100">
 									<img class="position-absolute img-fluid w-100 h-100"
 										src="<c:url value="/resources/img/service-3.jpg"/>"
-										 style="object-fit: cover;" alt="">
+										style="object-fit: cover;" alt="">
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -151,7 +152,7 @@
 								<div class="position-relative h-100">
 									<img class="position-absolute img-fluid w-100 h-100"
 										src="<c:url value="/resources/img/service-4.jpg"/>"
-										 style="object-fit: cover;" alt="">
+										style="object-fit: cover;" alt="">
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -181,7 +182,6 @@
 </div>
 <!-- Service End -->
 
-
 <!-- Booking Start -->
 <div class="container-fluid bg-secondary booking my-5 wow fadeInUp"
 	data-wow-delay="0.1s">
@@ -204,42 +204,71 @@
 					class="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn"
 					data-wow-delay="0.6s">
 					<h1 class="text-white mb-4">Book For A Service</h1>
-					<form>
+					<form:form
+						action="${pageContext.request.contextPath }/user/booking-service"
+						method="post" id="formBooking" modelAttribute="booking">
 						<div class="row g-3">
 							<div class="col-12 col-sm-6">
-								<input type="text" class="form-control border-0"
-									placeholder="Your Name" style="height: 55px;">
+								<form:input path="yourname" cssClass="form-control border-0"
+									placeholder="Your Name" style="height: 55px;" />
 							</div>
 							<div class="col-12 col-sm-6">
-								<input type="email" class="form-control border-0"
-									placeholder="Your Email" style="height: 55px;">
+								<form:input path="youremail" cssClass="form-control border-0"
+									placeholder="Your Email" style="height: 55px;" />
+								<form:errors path="youremail" cssClass="form-control border-0"
+									id="errForm" style="height: 55px;" />
+							</div>
+							<div class="col-12 ">
+								<form:input path="yourphone" cssClass="form-control border-0"
+									placeholder="Your Phone" style="height: 55px;" />
+								<form:errors path="yourphone" cssClass="form-control border-0"
+									id="errForm" style="height: 55px;" />
 							</div>
 							<div class="col-12 col-sm-6">
-								<select class="form-select border-0" style="height: 55px;">
-									<option selected>Select A Service</option>
-									<option value="1">Service 1</option>
-									<option value="2">Service 2</option>
-									<option value="3">Service 3</option>
-								</select>
+								<form:select path="serviceid"
+									class="form-select border-0 service__select__changeValue"
+									style="height: 55px;">
+									<option value="0">Select A Service</option>
+									<c:forEach items="${listService }" var="item">
+										<c:if test="${booking.serviceid== item.serviceID}">
+											<option value="${item.serviceID }" selected="selected">${item.serviceName }</option>
+										</c:if>
+										<c:if test="${booking.serviceid!= item.serviceID}">
+											<option value="${item.serviceID }">${item.serviceName }</option>
+										</c:if>
+									</c:forEach>
+								</form:select>
 							</div>
 							<div class="col-12 col-sm-6">
 								<div class="date" id="date1" data-target-input="nearest">
-									<input type="text"
-										class="form-control border-0 datetimepicker-input"
+									<form:input path="date"
+										cssClass="form-control border-0 datetimepicker-input"
 										placeholder="Service Date" data-target="#date1"
-										data-toggle="datetimepicker" style="height: 55px;">
+										data-toggle="datetimepicker" style="height: 55px;" />
+									<form:errors path="date" cssClass="form-control border-0"
+										id="errForm" style="height: 55px;" />
 								</div>
 							</div>
-							<div class="col-12">
-								<textarea class="form-control border-0"
-									placeholder="Special Request"></textarea>
+							<div class="col-12 col-sm-6">
+								<input type="text" id="servicePrice"
+									class="form-control border-0" placeholder="Price"
+									readonly="readonly" style="height: 55px;">
+							</div>
+							<div class="col-12 col-sm-6">
+								<textarea class="form-control border-0" id="serviceDescription"
+									placeholder="Description" readonly="readonly"></textarea>
 							</div>
 							<div class="col-12">
-								<button class="btn btn-secondary w-100 py-3" type="submit">Book
-									Now</button>
+								<form:textarea path="note" cssClass="form-control border-0"
+									placeholder="Special Request" />
+							</div>
+							<div class="col-12">
+								<button
+									class="btn btn-secondary w-100 py-3 sevice__button__booking"
+									type="button">Book Now</button>
 							</div>
 						</div>
-					</form>
+					</form:form>
 				</div>
 			</div>
 		</div>
@@ -259,7 +288,7 @@
 			<div class="testimonial-item text-center">
 				<img class="bg-light rounded-circle p-2 mx-auto mb-3"
 					src="<c:url value="/resources/img/testimonial-1.jpg"/>"
-					 style="width: 80px; height: 80px;">
+					style="width: 80px; height: 80px;">
 				<h5 class="mb-0">Client Name</h5>
 				<p>Profession</p>
 				<div class="testimonial-text bg-light text-center p-4">
@@ -282,7 +311,7 @@
 			<div class="testimonial-item text-center">
 				<img class="bg-light rounded-circle p-2 mx-auto mb-3"
 					src="<c:url value="/resources/img/testimonial-3.jpg"/>"
-					 style="width: 80px; height: 80px;">
+					style="width: 80px; height: 80px;">
 				<h5 class="mb-0">Client Name</h5>
 				<p>Profession</p>
 				<div class="testimonial-text bg-light text-center p-4">
@@ -294,7 +323,7 @@
 			<div class="testimonial-item text-center">
 				<img class="bg-light rounded-circle p-2 mx-auto mb-3"
 					src="<c:url value="/resources/img/testimonial-4.jpg"/>"
-					 style="width: 80px; height: 80px;">
+					style="width: 80px; height: 80px;">
 				<h5 class="mb-0">Client Name</h5>
 				<p>Profession</p>
 				<div class="testimonial-text bg-light text-center p-4">

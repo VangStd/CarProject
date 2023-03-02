@@ -58,6 +58,10 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/user/viheclerental.jsp" />
 	</definition>
+	<definition name="viheclerental_detail" extends="user">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/user/cardetail.jsp" />
+	</definition>
 	<!-- _________________admin___________________ -->
 	<definition name="admin"
 		template="/WEB-INF/jsp/layouts/admin/mainLayout.jsp">
@@ -122,5 +126,42 @@
 	<definition name="ad_edit_imagecar" extends="admin">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/imagecar/editimagecar.jsp" />
+	</definition>
+	<definition name="ad_index_servicecar" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/servicecar/index.jsp" />
+	</definition>
+	<definition name="ad_add_servicecar" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/servicecar/addservicecar.jsp" />
+	</definition>
+	<definition name="ad_edit_servicecar" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/servicecar/editservicecar.jsp" />
+	</definition>
+	<definition name="ad_index_booking" extends="admin">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/booking/index.jsp" />
+	</definition>
+
+
+	<!-- Technician -->
+
+
+	<definition name="technician"
+		template="/WEB-INF/jsp/layouts/technician/mainLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="menu" value="" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="" />
+	</definition>
+	<definition name="tech_index" extends="technician">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/technician/index.jsp" />
+	</definition>
+	<definition name="tech_index_request" extends="technician">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/technician/request/index.jsp" />
 	</definition>
 </tiles-definitions>

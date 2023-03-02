@@ -8,8 +8,10 @@ import org.springframework.validation.BindingResult;
 
 import com.java.entities.AccountConfig;
 import com.java.entities.Accounts;
+import com.java.entities.TechnicianDetail;
 import com.java.repositories.AccountConfigRepository;
 import com.java.repositories.AccountRepository;
+import com.java.repositories.TechnicianDetailRepository;
 import com.java.repositoriesobjectquery.AccountConfigRepositoriesCustom;
 import com.java.repositoriesobjectquery.AccountRepositoriesCustom;
 import com.java.service.AccountConfigService;
@@ -25,7 +27,8 @@ public class AccountConfigServiceimpl implements AccountConfigService {
 	private AccountRepository accountRepository;
 	@Autowired
 	private AccountConfigRepository accountConfigRepository;
-
+	@Autowired
+	private TechnicianDetailRepository technicianDetailRepository;
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -101,6 +104,15 @@ public class AccountConfigServiceimpl implements AccountConfigService {
 			accountRepository.save(accounts);
 			accountConfig.setAccountID(accounts);
 			accountConfigRepository.save(accountConfig);
+			if (accounts.getRoles().contains("TECH")) {
+				TechnicianDetail technicianDetail = new TechnicianDetail();
+				technicianDetail.setTechnicianID(accounts.getAccountID());
+				technicianDetail.setRequest(0);
+				technicianDetail.setRequestProcessing(0);
+				technicianDetail.setRequestCompleted(0);
+				technicianDetail.setMark(0);
+				technicianDetailRepository.save(technicianDetail);
+			}
 			return "redirect:/admin/account-home";
 		}
 	}

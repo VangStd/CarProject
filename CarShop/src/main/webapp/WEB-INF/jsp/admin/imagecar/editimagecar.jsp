@@ -13,7 +13,6 @@
 			<div class="col-lg-12">
 				<form:form action="" method="post" modelAttribute="imagecar" enctype="multipart/form-data">
 				<form:hidden path="carID.carID"/>
-				<form:hidden path="carID"/>
 				<form:hidden path="imageDefault"/>
 				<form:hidden path="image1"/>
 				<form:hidden path="image2"/>
@@ -26,9 +25,11 @@
 							type="text" value="${imagecar.carID.productName }"
 							class="form-control" readonly="readonly">
 					</div>
+					${imagecar.image1 }
+					<img alt="" src="${imagecar.image1 }">
 					<div class="row">
 						<div class="mb-3 mt-3 col-lg-6">
-							<label for="email" class="form-label">OldImage 1:</label> <img
+							<label for="" class="form-label">OldImage 1:</label> <img
 								alt="" src="${imagecar.image1}" class="img-thumbnail"
 								width="200px">
 						</div>

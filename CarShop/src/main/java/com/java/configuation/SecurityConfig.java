@@ -33,10 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
 		http.csrf().disable();
-		http.authorizeRequests()
-				.antMatchers("/", "/home", "/about", "/login", "/logout", "/logout-success", "/contact", "/booking","/signup")
-				.permitAll();
+		http.authorizeRequests().antMatchers("/", "/home", "/about", "/login", "/logout", "/logout-success", "/contact",
+				"/booking", "/signup").permitAll();
 		http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')");
+		http.authorizeRequests().antMatchers("/tech/**").access("hasRole('ROLE_TECH')");
 		http.authorizeRequests().antMatchers("/user/**").access("hasRole('ROLE_USER')");
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 		http.authorizeRequests().and().formLogin().loginPage("/login").loginProcessingUrl("/login-process")

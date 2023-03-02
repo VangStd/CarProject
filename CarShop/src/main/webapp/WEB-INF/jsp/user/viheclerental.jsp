@@ -35,8 +35,10 @@
 					<c:if test="${listCar.size() > 0}">
 						<c:forEach items="${listCar}" var="item">
 							<div class="col-lg-4 divShowCar">
-								<img alt="" src="${item.carDetailCollection[0].image}"
-									class="img-thumbnail" />
+								<a
+									href="${pageContext.request.contextPath}/vihecle-detail/${item.carID}"><img
+									alt="" src="${item.carDetailCollection[0].image}"
+									class="img-thumbnail" /></a>
 								<center>
 									<p>Price/hour ${item.price}</p>
 									<p>${item.productName}</p>

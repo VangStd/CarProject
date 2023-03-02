@@ -37,6 +37,8 @@ public class AccountController {
 		Accounts accounts = accountService.loadByUsername(principal.getName());
 		if (accounts.getRoles().contains("ADMIN")) {
 			return "redirect:/admin/home";
+		} else if (accounts.getRoles().contains("TECH")) {
+			return "redirect:/tech/home";
 		} else {
 			return "redirect:/home";
 		}
@@ -62,10 +64,10 @@ public class AccountController {
 	}
 
 	@GetMapping("/403")
-	public String page403(Principal principal,Model model) {
-		if(principal == null) {
+	public String page403(Principal principal, Model model) {
+		if (principal == null) {
 			model.addAttribute("msg", "You");
-		}else {
+		} else {
 			model.addAttribute("msg", principal.getName());
 		}
 		return "403";

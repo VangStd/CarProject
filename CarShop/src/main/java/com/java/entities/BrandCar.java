@@ -46,7 +46,7 @@ public class BrandCar implements Serializable {
     @Column(name = "Phone")
     @Pattern(regexp = "0[0-9]{9,11}",message = "Phone must begin 0 and must have 10 - 12 number")
     private String phone;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "brandID")
+    @OneToMany(cascade = {CascadeType.ALL,CascadeType.REMOVE}, mappedBy = "brandID")
     private Collection<Car> carCollection;
 
     public BrandCar() {

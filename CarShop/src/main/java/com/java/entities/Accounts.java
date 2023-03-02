@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -61,8 +62,14 @@ public class Accounts implements Serializable {
 	@Transient
 	private String confirmpass;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "accountID",fetch = FetchType.EAGER)
-	private Collection<AccountConfig> accountConfigCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "accounts")
+    private TechnicianDetail technicianDetail;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountID")
+    private Collection<AccountConfig> accountConfigCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "technicianID")
+    private Collection<ProcessBookingService> processBookingServiceCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerID")
+    private Collection<OrderService> orderServiceCollection;
 
 	public List<GrantedAuthority> getListGrant() {
 		String str[] = roles.split(",");
@@ -154,6 +161,30 @@ public class Accounts implements Serializable {
 
 	public void setAccountConfigCollection(Collection<AccountConfig> accountConfigCollection) {
 		this.accountConfigCollection = accountConfigCollection;
+	}
+
+	public TechnicianDetail getTechnicianDetail() {
+		return technicianDetail;
+	}
+
+	public void setTechnicianDetail(TechnicianDetail technicianDetail) {
+		this.technicianDetail = technicianDetail;
+	}
+
+	public Collection<ProcessBookingService> getProcessBookingServiceCollection() {
+		return processBookingServiceCollection;
+	}
+
+	public void setProcessBookingServiceCollection(Collection<ProcessBookingService> processBookingServiceCollection) {
+		this.processBookingServiceCollection = processBookingServiceCollection;
+	}
+
+	public Collection<OrderService> getOrderServiceCollection() {
+		return orderServiceCollection;
+	}
+
+	public void setOrderServiceCollection(Collection<OrderService> orderServiceCollection) {
+		this.orderServiceCollection = orderServiceCollection;
 	}
 
 	@Override

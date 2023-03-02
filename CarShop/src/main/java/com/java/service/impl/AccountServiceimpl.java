@@ -1,5 +1,6 @@
 package com.java.service.impl;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -130,6 +131,15 @@ public class AccountServiceimpl implements AccountService {
 			// TODO: handle exception
 			return "err";
 		}
+	}
+
+	@Override
+	public String homeRequestTech(Model model, Principal principal) {
+		String[] status = { "None", "Processing", "Completed" };
+		Accounts techAccount = accountRepositories.loadByUsername(principal.getName());
+		model.addAttribute("tech", techAccount);
+		model.addAttribute("listStatus", status);
+		return "tech_index_request";
 	}
 
 }

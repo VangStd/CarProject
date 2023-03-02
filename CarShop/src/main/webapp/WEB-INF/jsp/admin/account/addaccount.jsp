@@ -72,9 +72,9 @@
 						</div>
 
 						<div class="form-check form-check-inline mb-0">
-							<form:radiobutton path="accountID.roles" value="ROLE_STAFF" name="inlineRadioOptions"
+							<form:radiobutton path="accountID.roles" value="ROLE_TECH" name="inlineRadioOptions"
 								id="femaleGender" />
-							<label class="form-check-label" for="otherGender">STAFF</label>
+							<label class="form-check-label" for="otherGender">Technician</label>
 						</div>
 
 					</div>

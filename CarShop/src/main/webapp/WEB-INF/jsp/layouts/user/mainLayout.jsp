@@ -41,14 +41,18 @@
 <link
 	href="<c:url value="/resources/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"/>"
 	rel="stylesheet" />
-
+<link rel='stylesheet'
+	href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
 <!-- Customized Bootstrap Stylesheet -->
 <link href="<c:url value="/resources/css/bootstrap.min.css"/>"
 	rel="stylesheet" />
 
 <!-- Template Stylesheet -->
 <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet" />
-<link href="<c:url value="/resources/newstyleuser.css"/>" rel="stylesheet" />
+<link href="<c:url value="/resources/newstyleuser.css"/>"
+	rel="stylesheet" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -115,13 +119,13 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
-				<a href="${pageContext.request.contextPath}/home" class="nav-item nav-link active">Home</a> <a
+				<a href="${pageContext.request.contextPath}/home"
+					class="nav-item nav-link active">Home</a> <a
 					href="${pageContext.request.contextPath }/about"
-					class="nav-item nav-link">About</a> 
-					<a
+					class="nav-item nav-link">About</a> <a
 					href="${pageContext.request.contextPath }/vihecle-rental"
-					class="nav-item nav-link">Vehicle Rental</a>
-					<a href="${pageContext.request.contextPath }/service"
+					class="nav-item nav-link">Vehicle Rental</a> <a
+					href="${pageContext.request.contextPath }/service"
 					class="nav-item nav-link">Services</a>
 				<div class="nav-item dropdown">
 					<a href="#" class="nav-link dropdown-toggle"
@@ -263,10 +267,12 @@
 		src="<c:url value="/resources/lib/tempusdominus/js/moment-timezone.min.js"/>"></script>
 	<script
 		src="<c:url value="/resources/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"/>"></script>
-
+	<script
+		src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 	<!-- Template Javascript -->
 
 	<script src="<c:url value="/resources/js/main.js"/>"></script>
+	<script src="<c:url value="/resources/processAjax.js"/>"></script>
 </body>
 
 </html>

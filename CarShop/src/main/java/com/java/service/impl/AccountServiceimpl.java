@@ -135,11 +135,25 @@ public class AccountServiceimpl implements AccountService {
 
 	@Override
 	public String homeRequestTech(Model model, Principal principal) {
-		String[] status = { "None", "Processing", "Completed" };
+		Accounts techAccount = accountRepositories.loadByUsername(principal.getName());
+		model.addAttribute("listTech", accountRepositories.findAllByRolesTech());
+		model.addAttribute("username", principal.getName());
+		model.addAttribute("tech", techAccount);
+		return "tech_index_request";
+	}
+
+	@Override
+	public String homeRequestProcessingTech(Model model, Principal principal) {
 		Accounts techAccount = accountRepositories.loadByUsername(principal.getName());
 		model.addAttribute("tech", techAccount);
-		model.addAttribute("listStatus", status);
-		return "tech_index_request";
+		return "tech_index_processing";
+	}
+
+	@Override
+	public String homeAllRequestTech(Model model, Principal principal) {
+		Accounts techAccount = accountRepositories.loadByUsername(principal.getName());
+		model.addAttribute("tech", techAccount);
+		return "tech_index_allrequest";
 	}
 
 }

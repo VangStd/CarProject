@@ -72,6 +72,9 @@ public class OrderService implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "orderService")
 	private ProcessBookingService processBookingService;
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "orderID")
+	private Collection<RequestChangeTechnician> requestChangeTechnicianCollection;
+
 	public OrderService() {
 	}
 
@@ -156,6 +159,15 @@ public class OrderService implements Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Collection<RequestChangeTechnician> getRequestChangeTechnicianCollection() {
+		return requestChangeTechnicianCollection;
+	}
+
+	public void setRequestChangeTechnicianCollection(
+			Collection<RequestChangeTechnician> requestChangeTechnicianCollection) {
+		this.requestChangeTechnicianCollection = requestChangeTechnicianCollection;
 	}
 
 	@XmlTransient

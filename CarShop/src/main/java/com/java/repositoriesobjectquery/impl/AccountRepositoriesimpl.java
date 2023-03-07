@@ -1,5 +1,7 @@
 package com.java.repositoriesobjectquery.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -16,11 +18,17 @@ import com.java.repositoriesobjectquery.AccountRepositoriesCustom;
 @Repository
 public class AccountRepositoriesimpl implements AccountRepositoriesCustom {
 
+	EntityManagerFactory etM;
+	EntityManager em;
+
+	public AccountRepositoriesimpl() {
+		etM = Persistence.createEntityManagerFactory("CarShop");
+		em = etM.createEntityManager();
+	}
+
 	@Override
 	public Accounts loadByUsername(String username) {
 		// TODO Auto-generated method stub
-		EntityManagerFactory etM = Persistence.createEntityManagerFactory("CarShop");
-		EntityManager em = etM.createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Object> cq = cb.createQuery();
 		Root<Accounts> root = cq.from(Accounts.class);
@@ -33,8 +41,6 @@ public class AccountRepositoriesimpl implements AccountRepositoriesCustom {
 	@Override
 	public long getCountByUsername(String username) {
 		// TODO Auto-generated method stub
-		EntityManagerFactory etM = Persistence.createEntityManagerFactory("CarShop");
-		EntityManager em = etM.createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Object> cq = cb.createQuery();
 		Root<Accounts> root = cq.from(Accounts.class);
@@ -47,8 +53,6 @@ public class AccountRepositoriesimpl implements AccountRepositoriesCustom {
 	@Override
 	public long getCountByEmail(String email) {
 		// TODO Auto-generated method stub
-		EntityManagerFactory etM = Persistence.createEntityManagerFactory("CarShop");
-		EntityManager em = etM.createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Object> cq = cb.createQuery();
 		Root<Accounts> root = cq.from(Accounts.class);
@@ -58,4 +62,14 @@ public class AccountRepositoriesimpl implements AccountRepositoriesCustom {
 		return (long) query.getSingleResult();
 	}
 
+	@Override
+	public List<Accounts> findAllByRolesTech() {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Object> cq = cb.createQuery();
+		Root<Accounts> root = cq.from(Accounts.class);
+		cq.select(root);
+		cq.where(cb.equal(root.get("roles"), "ROLE_TECH"));
+		Query query = em.createQuery(cq);
+		return query.getResultList();
+	}
 }

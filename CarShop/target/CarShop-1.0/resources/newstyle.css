@@ -1,0 +1,43 @@
+@charset "ISO-8859-1";
+
+button {
+	cursor: pointer;
+}
+/*Initial style sort*/
+.tablemanager th.sorterHeader {
+	cursor: pointer;
+}
+
+.tablemanager th.sorterHeader:after {
+	content: " \f0dc";
+	font-family: "FontAwesome";
+}
+/*Style sort desc*/
+.tablemanager th.sortingDesc:after {
+	content: " \f0dd";
+	font-family: "FontAwesome";
+}
+/*Style sort asc*/
+.tablemanager th.sortingAsc:after {
+	content: " \f0de";
+	font-family: "FontAwesome";
+}
+/*Style disabled*/
+.tablemanager th.disableSort {
+	
+}
+
+#for_numrows {
+	padding: 10px;
+	float: left;
+}
+
+#for_filter_by {
+	padding: 10px;
+	float: right;
+}
+
+#pagesControllers {
+	display: block;
+	text-align: center;
+}

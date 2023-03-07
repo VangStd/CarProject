@@ -36,6 +36,10 @@ public interface AccountService {
 
 	// tech
 
-	String homeRequestTech(Model model,Principal principal);
+	String homeRequestTech(Model model, Principal principal);
+
+	String homeRequestProcessingTech(Model model, Principal principal);
+	
+	String homeAllRequestTech(Model model, Principal principal);
 
 }

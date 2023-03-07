@@ -28,7 +28,6 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-
 @Entity
 @Table(name = "Accounts")
 public class Accounts implements Serializable {
@@ -41,12 +40,12 @@ public class Accounts implements Serializable {
 	private Long accountID;
 	@Basic(optional = false)
 	@Column(name = "Username")
-	@Length(min = 6,max = 15,message = "Username must from 6 to 15 character")
+	@Length(min = 6, max = 15, message = "Username must from 6 to 15 character")
 	private String username;
 	@Basic(optional = false)
 	@Column(name = "Password")
-	//@Min(value = 6,message = "Password must than 6 character")
-	@Length(min = 6,message = "Password must than 6 character")
+	// @Min(value = 6,message = "Password must than 6 character")
+	@Length(min = 6, message = "Password must than 6 character")
 	private String password;
 	@Basic(optional = false)
 	@Column(name = "Email")
@@ -58,18 +57,22 @@ public class Accounts implements Serializable {
 	@Basic(optional = false)
 	@Column(name = "Status")
 	private int status;
-	
+
 	@Transient
 	private String confirmpass;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "accounts")
-    private TechnicianDetail technicianDetail;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountID")
-    private Collection<AccountConfig> accountConfigCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "technicianID")
-    private Collection<ProcessBookingService> processBookingServiceCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerID")
-    private Collection<OrderService> orderServiceCollection;
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "accounts")
+	private TechnicianDetail technicianDetail;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "accountID")
+	private Collection<AccountConfig> accountConfigCollection;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "technicianID")
+	private Collection<ProcessBookingService> processBookingServiceCollection;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customerID")
+	private Collection<OrderService> orderServiceCollection;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "technicianSender")
+	private Collection<RequestChangeTechnician> requestChangeTechnicianCollection;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "technicianReceiver")
+	private Collection<RequestChangeTechnician> requestChangeTechnicianCollection1;
 
 	public List<GrantedAuthority> getListGrant() {
 		String str[] = roles.split(",");
@@ -143,8 +146,6 @@ public class Accounts implements Serializable {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	
-	
 
 	public String getConfirmpass() {
 		return confirmpass;
@@ -153,7 +154,6 @@ public class Accounts implements Serializable {
 	public void setConfirmpass(String confirmpass) {
 		this.confirmpass = confirmpass;
 	}
-
 
 	public Collection<AccountConfig> getAccountConfigCollection() {
 		return accountConfigCollection;
@@ -186,6 +186,24 @@ public class Accounts implements Serializable {
 	public void setOrderServiceCollection(Collection<OrderService> orderServiceCollection) {
 		this.orderServiceCollection = orderServiceCollection;
 	}
+	
+	public Collection<RequestChangeTechnician> getRequestChangeTechnicianCollection() {
+		return requestChangeTechnicianCollection;
+	}
+
+	public void setRequestChangeTechnicianCollection(
+			Collection<RequestChangeTechnician> requestChangeTechnicianCollection) {
+		this.requestChangeTechnicianCollection = requestChangeTechnicianCollection;
+	}
+
+	public Collection<RequestChangeTechnician> getRequestChangeTechnicianCollection1() {
+		return requestChangeTechnicianCollection1;
+	}
+
+	public void setRequestChangeTechnicianCollection1(
+			Collection<RequestChangeTechnician> requestChangeTechnicianCollection1) {
+		this.requestChangeTechnicianCollection1 = requestChangeTechnicianCollection1;
+	}
 
 	@Override
 	public int hashCode() {
@@ -214,7 +232,5 @@ public class Accounts implements Serializable {
 				+ email + ", roles=" + roles + ", status=" + status + ", confirmpass=" + confirmpass
 				+ ", accountConfigCollection=" + accountConfigCollection + "]";
 	}
-
-
 
 }
